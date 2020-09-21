@@ -10,7 +10,6 @@ import {
   ScoreContainer,
 } from "./styles";
 
-
 function Game() {
   const defaultHistory = [Array(9).fill(null)];
 
@@ -24,12 +23,12 @@ function Game() {
 
   useEffect(() => {
     let isSubscribed = true;
-  
+
     if (winner && isSubscribed) {
       handleWinner(winner);
     }
 
-    return () => isSubscribed = false;
+    return () => (isSubscribed = false);
   }, [winner !== null]);
 
   const handleClick = (i) => {
@@ -70,7 +69,6 @@ function Game() {
     setStepNumber(0);
     setHistory(defaultHistory);
     setXisNext("X");
-
   };
 
   const resetGame = () => {
@@ -91,29 +89,39 @@ function Game() {
   };
 
   return (
-    <GameContainer>
-      <GameHeader>
-        <ScoreContainer>
-          <div className="score-wrapper">
-            <div className={"score"}> {player1Score}</div>
-          </div>
-          <label className={"player"}>Player X</label>
-        </ScoreContainer>
-        <ScoreContainer>
-          <div className="score-wrapper">
-            <div className={"score"}> {player2Score}</div>
-          </div>
-          <label className={"player"}>Player O</label>
-        </ScoreContainer>
-      </GameHeader>
-      <Board squares={history[stepNumber]} onClick={handleClick} />
-      <GameFooter>
-        <NextPlayerText>
-          {winner ? "Winner: " + winner :<span> <b>{xO}'s </b> turn</span> }
-        </NextPlayerText>
-        <ResetButton onClick={() => resetGame()}> Reset </ResetButton>
-      </GameFooter>
-    </GameContainer>
+    <>
+  
+      <GameContainer>
+        <GameHeader>
+          <ScoreContainer>
+            <div className="score-wrapper">
+              <div className={"score"}> {player1Score}</div>
+            </div>
+            <label className={"player"}>Player X</label>
+          </ScoreContainer>
+          <ScoreContainer>
+            <div className="score-wrapper">
+              <div className={"score"}> {player2Score}</div>
+            </div>
+            <label className={"player"}>Player O</label>
+          </ScoreContainer>
+        </GameHeader>
+        <Board squares={history[stepNumber]} onClick={handleClick} />
+        <GameFooter>
+          <NextPlayerText>
+            {winner ? (
+              "Winner: " + winner
+            ) : (
+              <span>
+                {" "}
+                <b>{xO}'s </b> turn
+              </span>
+            )}
+          </NextPlayerText>
+          <ResetButton onClick={() => resetGame()}> Reset </ResetButton>
+        </GameFooter>
+      </GameContainer>
+    </>
   );
 }
 
