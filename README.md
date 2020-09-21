@@ -1,3 +1,6 @@
+## Deployed Website
+https://javascript-react-tic-tac-toe.netlify.app/
+
 
 ## Features
 - 2 players
