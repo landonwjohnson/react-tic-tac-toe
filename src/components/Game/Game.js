@@ -10,21 +10,26 @@ import {
   ScoreContainer,
 } from "./styles";
 
-const defaultHistory = [Array(9).fill(null)];
 
 function Game() {
+  const defaultHistory = [Array(9).fill(null)];
+
   const [history, setHistory] = useState(defaultHistory);
   const [stepNumber, setStepNumber] = useState(0);
   const [xIsNext, setXisNext] = useState(true);
-  const winner = calculateWinner(history[stepNumber]);
   const xO = xIsNext ? "X" : "O";
   const [player1Score, setPlayerOneScore] = useState(0);
   const [player2Score, setPlayerTwoScore] = useState(0);
+  let winner = calculateWinner(history[stepNumber]);
 
   useEffect(() => {
-    if (winner) {
+    let isSubscribed = true;
+  
+    if (winner && isSubscribed) {
       handleWinner(winner);
     }
+
+    return () => isSubscribed = false;
   }, [winner !== null]);
 
   const handleClick = (i) => {

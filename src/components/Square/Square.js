@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {SquareButton} from './styles'
 
 
-
 function Square({value, onClick}) {
   return (
     <SquareButton isX={value === "X"? true : false} onClick={onClick}>
