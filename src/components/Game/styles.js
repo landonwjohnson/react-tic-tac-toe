@@ -53,6 +53,7 @@ export const ResetButton = styled.button`
     border: 1px solid transparent;
     font-size: 18px;
     cursor: pointer;
+    background: #ccc;
     
 `
 
